@@ -5,14 +5,12 @@ import axios from 'axios';
 
 //components import
 import CardList from '../../components/CardList/index';
-import AddButton from '../../components/AddButton/index';
+import AddButton from '../../components/addButton/index';
 
 // Local imports
 import Onboard from '../../components/Onboard/index';
 import AuthContext from '../../context/auth-context';
 import styles from './styles';
-import img from '../../assets/favicon.png';
-
 
 const ProfileScreen = props => {
   const authContext = useContext(AuthContext);
@@ -38,9 +36,7 @@ const ProfileScreen = props => {
   const getProfiles = async () => {
     let response;
     try {
-      response = await axios.get(
-        'https://allergio-beta.herokuapp.com/api/profiles/' + authContext.user._id + '/allmight'
-      );
+      response = await axios.get('http://localhost:5000/api/profiles/' + authContext.user._id + '/allmight');
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +46,7 @@ const ProfileScreen = props => {
 
   const getUser = async () => {
     console.log('auth', authContext.user);
-    // const userFetch = await axios.get('https://allergio-beta.herokuapp.com/api/users/'+ authContext.user._id)
+    // const userFetch = await axios.get('http://localhost:5000/api/users/'+ authContext.user._id)
     //console.log("user",userFetch.data.message)
     setUser(authContext.user);
   };

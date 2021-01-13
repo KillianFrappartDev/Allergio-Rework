@@ -27,7 +27,7 @@ const LoginScreen = props => {
 
     let response;
     try {
-      response = await axios.post('https://allergio-beta.herokuapp.com/api/users/login', { email, password });
+      response = await axios.post('http://localhost:5000/api/users/login', { email, password });
     } catch (error) {
       console.log(error);
     }

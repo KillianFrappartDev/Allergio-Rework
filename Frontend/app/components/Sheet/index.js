@@ -52,7 +52,7 @@ const Sheet = props => {
     let profilesWithAllergens;
     try {
       profilesWithAllergens = await axios.get(
-        'https://allergio-beta.herokuapp.com/api/profiles/' + authContext.user._id + '/allmight'
+        'http://localhost:5000/api/profiles/' + authContext.user._id + '/allmight'
       );
     } catch (error) {
       console.log(error);

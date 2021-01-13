@@ -15,7 +15,7 @@ const AddAllergens = ({ navigation }) => {
   }, []);
 
   const getAllergens = async () => {
-    const response = await Axios.get('https://allergio-beta.herokuapp.com/api/allergens/');
+    const response = await Axios.get('http://localhost:5000/api/allergens/');
     setAllergens(response.data.allergens);
   };
 

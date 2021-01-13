@@ -32,7 +32,7 @@ const EditScreen = ({ navigation }) => {
   };
 
   const postUser = async () => {
-    const res = await axios.put('https://allergio-beta.herokuapp.com/api/users/edit', {
+    const res = await axios.put('http://localhost:5000/api/users/edit', {
       user
     });
 

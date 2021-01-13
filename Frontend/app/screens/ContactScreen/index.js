@@ -7,7 +7,7 @@ import axios from 'axios';
 // Local imports
 import Onboard from '../../components/Onboard/index';
 import Popup from '../../components/Popup/index';
-import AddButton from '../../components/AddButton/index';
+import AddButton from '../../components/addButton/index';
 import Contact from '../../components/Contact/index';
 import AuthContext from '../../context/auth-context';
 import styles from './styles';
@@ -47,7 +47,7 @@ const ContactScreen = props => {
   const fetchContacts = async () => {
     let response;
     try {
-      response = await axios.get('https://allergio-beta.herokuapp.com/api/contacts/' + authContext.user._id);
+      response = await axios.get('http://localhost:5000/api/contacts/' + authContext.user._id);
     } catch (error) {
       console.log(error);
       return;
@@ -60,7 +60,7 @@ const ContactScreen = props => {
     if (search.trim() !== '') {
       let response;
       try {
-        response = await axios.post('https://allergio-beta.herokuapp.com/api/contacts/search/', { search });
+        response = await axios.post('http://localhost:5000/api/contacts/search/', { search });
       } catch (error) {
         console.log(error);
         return;
@@ -80,7 +80,7 @@ const ContactScreen = props => {
   const addContact = async id => {
     let response;
     try {
-      response = await axios.post('https://allergio-beta.herokuapp.com/api/contacts/', {
+      response = await axios.post('http://localhost:5000/api/contacts/', {
         userId: authContext.user._id,
         contactId: id
       });
@@ -101,7 +101,7 @@ const ContactScreen = props => {
     let response;
     try {
       response = await axios({
-        url: 'https://allergio-beta.herokuapp.com/api/contacts/',
+        url: 'http://localhost:5000/api/contacts/',
         method: 'DELETE',
         data: { userId: authContext.user._id, contactId: id }
       });
@@ -121,7 +121,7 @@ const ContactScreen = props => {
   const shareProfiles = async id => {
     let response;
     try {
-      response = await axios.post('https://allergio-beta.herokuapp.com/api/contacts/share', {
+      response = await axios.post('http://localhost:5000/api/contacts/share', {
         userId: authContext.user._id,
         contactId: id
       });
@@ -142,7 +142,7 @@ const ContactScreen = props => {
     let response;
     try {
       response = await axios({
-        url: 'https://allergio-beta.herokuapp.com/api/contacts/unshare',
+        url: 'http://localhost:5000/api/contacts/unshare',
         method: 'DELETE',
         data: { userId: authContext.user._id, contactId: id }
       });

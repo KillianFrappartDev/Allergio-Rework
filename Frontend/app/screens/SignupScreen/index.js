@@ -29,7 +29,7 @@ const SignupScreen = props => {
 
     let response;
     try {
-      response = await axios.post('https://allergio-beta.herokuapp.com/api/users/signup', {
+      response = await axios.post('http://localhost:5000/api/users/signup', {
         email,
         password,
         name,

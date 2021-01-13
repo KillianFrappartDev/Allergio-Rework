@@ -17,7 +17,7 @@ const AllergenScreen = props => {
   const fetchAllergenInfo = async name => {
     let allergenInfo;
     try {
-      allergenInfo = await axios.get('https://allergio-beta.herokuapp.com/api/allergens/name/' + name);
+      allergenInfo = await axios.get('http://localhost:5000/api/allergens/name/' + name);
     } catch (error) {
       console.log(error);
     }

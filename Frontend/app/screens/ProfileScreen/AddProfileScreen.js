@@ -37,12 +37,12 @@ const AddProfileScreen = ({ navigation, route }) => {
   };
 
   const postProfile = async () => {
-    const res = await axios.post('https://allergio-beta.herokuapp.com/api/profiles/', {
+    const res = await axios.post('http://localhost:5000/api/profiles/', {
       name: profile.name,
       owner: user._id,
       allergens: profile.allergens
     });
-    const getUser = await axios.get('https://allergio-beta.herokuapp.com/api/users/' + user._id);
+    const getUser = await axios.get('http://localhost:5000/api/users/' + user._id);
     authContext.setUserprofile(getUser.data.user);
   };
 
