@@ -1,11 +1,11 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
 import { Text, View, TouchableHighlight, Image, TouchableWithoutFeedback } from 'react-native';
 import axios from 'axios';
-
-import AuthContext from '../../context/auth-context';
 import BottomSheet from 'reanimated-bottom-sheet';
 
-// Style imports
+// Local imports
+import AuthContext from '../../context/auth-context';
+import { API_URL } from '../../utils/data';
 import styles from './styles';
 
 const Sheet = props => {
@@ -51,9 +51,7 @@ const Sheet = props => {
   const fetchProfilesWithAllergens = async () => {
     let profilesWithAllergens;
     try {
-      profilesWithAllergens = await axios.get(
-        'http://localhost:5000/api/profiles/' + authContext.user._id + '/allmight'
-      );
+      profilesWithAllergens = await axios.get(API_URL + 'profiles/' + authContext.user._id + '/allmight');
     } catch (error) {
       console.log(error);
     }

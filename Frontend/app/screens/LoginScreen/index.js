@@ -7,6 +7,7 @@ import axios from 'axios';
 // Local imports
 import AuthContext from '../../context/auth-context';
 import Form from '../../components/Form/index';
+import { API_URL } from '../../utils/data';
 import styles from './styles';
 
 const LoginScreen = props => {
@@ -27,7 +28,7 @@ const LoginScreen = props => {
 
     let response;
     try {
-      response = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      response = await axios.post(API_URL + 'users/login', { email, password });
     } catch (error) {
       console.log(error);
     }

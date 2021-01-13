@@ -1,9 +1,10 @@
-import Axios from 'axios';
+import axios from 'axios';
 import React from 'react';
 import { Image, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
 //local import
+import { API_URL } from '../../utils/data';
 import styles from './styles';
 
 const AddAllergens = ({ navigation }) => {
@@ -15,7 +16,7 @@ const AddAllergens = ({ navigation }) => {
   }, []);
 
   const getAllergens = async () => {
-    const response = await Axios.get('http://localhost:5000/api/allergens/');
+    const response = await axios.get(API_URL + 'allergens/');
     setAllergens(response.data.allergens);
   };
 

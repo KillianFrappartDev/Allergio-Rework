@@ -3,11 +3,10 @@ import { View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 
-//components import
-import CardList from '../../components/CardList/index';
-import AddButton from '../../components/addButton/index';
-
 // Local imports
+import CardList from '../../components/CardList/index';
+import { API_URL } from '../../utils/data';
+import AddButton from '../../components/addButton/index';
 import Onboard from '../../components/Onboard/index';
 import AuthContext from '../../context/auth-context';
 import styles from './styles';
@@ -36,7 +35,7 @@ const ProfileScreen = props => {
   const getProfiles = async () => {
     let response;
     try {
-      response = await axios.get('http://localhost:5000/api/profiles/' + authContext.user._id + '/allmight');
+      response = await axios.get(API_URL + 'profiles/' + authContext.user._id + '/allmight');
     } catch (error) {
       console.log(error);
     }

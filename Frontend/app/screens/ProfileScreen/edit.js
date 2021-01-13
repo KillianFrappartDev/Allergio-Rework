@@ -9,6 +9,7 @@ import Form from '../../components/Form/index.js';
 import styles from './styles';
 import AuthContext from '../../context/auth-context';
 import { set } from 'react-native-reanimated';
+import { API_URL } from '../../utils/data';
 import mime from 'mime';
 
 const EditScreen = ({ navigation }) => {
@@ -32,7 +33,7 @@ const EditScreen = ({ navigation }) => {
   };
 
   const postUser = async () => {
-    const res = await axios.put('http://localhost:5000/api/users/edit', {
+    const res = await axios.put(API_URL + 'users/edit', {
       user
     });
 

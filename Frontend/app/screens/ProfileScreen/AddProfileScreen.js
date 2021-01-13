@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { View } from 'react-native';
 import axios from 'axios';
 import { useIsFocused } from '@react-navigation/native';
-//components import
-import Form from '../../components/Form/index.js';
 
 // Local imports
+import Form from '../../components/Form/index.js';
 import styles from './styles';
+import { API_URL } from '../../utils/data';
 import AuthContext from '../../context/auth-context';
 
 const AddProfileScreen = ({ navigation, route }) => {
@@ -37,12 +37,12 @@ const AddProfileScreen = ({ navigation, route }) => {
   };
 
   const postProfile = async () => {
-    const res = await axios.post('http://localhost:5000/api/profiles/', {
+    const res = await axios.post(API_URL + 'profiles/', {
       name: profile.name,
       owner: user._id,
       allergens: profile.allergens
     });
-    const getUser = await axios.get('http://localhost:5000/api/users/' + user._id);
+    const getUser = await axios.get(API_URL + 'users/' + user._id);
     authContext.setUserprofile(getUser.data.user);
   };
 

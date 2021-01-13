@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 // Local imports
+import { API_URL } from '../../utils/data';
 import AuthContext from '../../context/auth-context';
 import Form from '../../components/Form/index';
 import styles from './styles';
@@ -29,7 +30,7 @@ const SignupScreen = props => {
 
     let response;
     try {
-      response = await axios.post('http://localhost:5000/api/users/signup', {
+      response = await axios.post(API_URL + 'users/signup', {
         email,
         password,
         name,
