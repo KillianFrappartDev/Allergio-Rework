@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "androidNavigationBar": {
+      "backgroundColor": "#000000"
+    },
+    "name": "allergio-beta",
+    "slug": "beta",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/AppIcons/icon.png",
+    "splash": {
+      "image": "./app/assets/allergio-slogan.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./app/assets/favicon.ico"
+    },
+    "android": {
+      "package": "allergio.alpha",
+      "versionCode": 2,
+      "permissions": ["CAMERA", "READ_CONTACTS", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+    },
+    "description": "Allergio helps parents share the list of food allergens their children are allergic to with others and scan food products for allergens."
+  }
+}
