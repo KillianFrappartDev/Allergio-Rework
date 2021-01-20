@@ -61,7 +61,7 @@ const AddProfileScreen = ({ navigation, route }) => {
         formField={{
           name: {
             label: 'name',
-            type: 'text',
+            type: 'name',
             inputProps: {
               required: true
             },

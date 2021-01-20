@@ -73,7 +73,7 @@ const Form = ({ formField, navigation, changeData, transparent, buttonTitle, sub
           <View key={key} style={styles.allergensContainer}>
             <Tag allergens={formField[key].value} />
             <TouchableOpacity style={styles.addAllergen} onPress={goAllergens}>
-              <Text style={{ color: 'white' }}>add</Text>
+              <Text style={{ color: 'white' }}>Add</Text>
             </TouchableOpacity>
           </View>
         </View>
