@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 const AdminBro = require('admin-bro');
 const AdminBroExpress = require('@admin-bro/express');
 const AdminBroMongoose = require('@admin-bro/mongoose');
@@ -23,13 +24,44 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Admin
+const Admin = mongoose.model('Admin', {
+  email: { type: String, required: true },
+  password: { type: String, required: true }
+});
+
 AdminBro.registerAdapter(AdminBroMongoose);
 const adminBro = new AdminBro({
   databases: [],
   rootPath: '/admin',
-  resources: [Allergen, Profile, User]
+  resources: [Allergen, Profile, User, Admin]
 });
-const router = AdminBroExpress.buildRouter(adminBro);
+
+const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
+  authenticate: async (email, password) => {
+    const admin = await Admin.findOne({ email });
+    if (admin) {
+      const matched = await bcrypt.compare(password, admin.password);
+      if (matched) {
+        return admin;
+      }
+    }
+    return false;
+  },
+  cookiePassword: 'some-secret-password-used-to-secure-cookie'
+});
+
+const createAdmin = async (email, password) => {
+  const adminExists = await Admin.findOne({ email });
+  if (adminExists) return;
+
+  const newAdmin = new Admin({ email, password: await bcrypt.hash(password, 10) });
+  try {
+    await newAdmin.save();
+  } catch (error) {
+    console.log('Could not create Admin.');
+  }
+};
+
 app.use(adminBro.options.rootPath, router);
 
 // Registered Routes
@@ -47,6 +79,7 @@ app.use((error, req, res, next) => {
 // DB & Start Server
 mongoose
   .connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => createAdmin(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD))
   .then(() => {
     app.listen(process.env.PORT || 5000, () => console.log('Server up and running!'));
   })
