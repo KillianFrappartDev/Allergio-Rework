@@ -22,7 +22,6 @@ const AddAllergens = ({ navigation }) => {
 
   const checkedValue = name => {
     const newChecked = [...checked];
-    //console.log(e)
     newChecked.includes(name) ? newChecked.splice(newChecked.indexOf(name), 1) : newChecked.push(name);
     setChecked(newChecked);
   };
@@ -39,7 +38,6 @@ const AddAllergens = ({ navigation }) => {
       });
       return val;
     });
-    //console.log('allergensSelect',allergensSelect)
     navigation.navigate('AddProfileScreen', { allergensSelect });
   };
 

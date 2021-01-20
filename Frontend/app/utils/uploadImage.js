@@ -1,7 +1,7 @@
 import sha1 from 'sha1';
 
 // Local imports
-import { CLOUDINARY_API, CLOUDINARY_SECRET } from './data';
+import { CLOUDINARY_API, CLOUDINARY_SECRET, CLOUDINARY_URL } from './data';
 
 const uploadHandler = e => {
   const formData = new FormData();
@@ -12,7 +12,7 @@ const uploadHandler = e => {
 
   let response;
   try {
-    response = await axios.post('https://api.cloudinary.com/v1_1/djghq5xmi/image/upload', formData);
+    response = await axios.post(CLOUDINARY_URL, formData);
   } catch (error) {
     console.log('ERROR', error);
   }

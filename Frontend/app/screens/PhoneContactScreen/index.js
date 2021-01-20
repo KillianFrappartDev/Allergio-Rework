@@ -27,8 +27,6 @@ const PhoneContactScreen = props => {
   }, []);
 
   const inviteHandler = async (id, num) => {
-    console.log('ID: ', id);
-    console.log('NUM: ', num);
     const isAvailable = await SMS.isAvailableAsync();
     if (isAvailable) {
       console.log('SMS AVAILABLE');

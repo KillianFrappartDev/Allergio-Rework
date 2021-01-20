@@ -20,17 +20,9 @@ const ProfileScreen = props => {
   const [sharedProfiles, setSharedProfiles] = React.useState([]);
 
   React.useEffect(() => {
-    // console.log(authContext.user)
-    // setUser(authContext.user)
     setUser(authContext.user);
     getProfiles();
-    //getUser()
   }, [authContext.user]);
-  /*
-  React.useEffect(()=> {
-    getUser()
-  },[user])
-    */
 
   const getProfiles = async () => {
     let response;
@@ -45,8 +37,6 @@ const ProfileScreen = props => {
 
   const getUser = async () => {
     console.log('auth', authContext.user);
-    // const userFetch = await axios.get('http://localhost:5000/api/users/'+ authContext.user._id)
-    //console.log("user",userFetch.data.message)
     setUser(authContext.user);
   };
 

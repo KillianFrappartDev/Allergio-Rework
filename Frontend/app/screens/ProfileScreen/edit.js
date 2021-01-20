@@ -42,7 +42,7 @@ const EditScreen = ({ navigation }) => {
   };
 
   React.useEffect(() => {
-    console.log('start');
+    ('start');
     if (getApi) postUser();
   }, [user]);
 
