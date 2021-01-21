@@ -8,6 +8,7 @@ const schema = new Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   lastName: { type: String, required: true },
+  image: { type: String },
   profiles: [{ type: mongoose.Types.ObjectId, ref: 'Profile' }],
   sharedProfiles: [{ type: mongoose.Types.ObjectId, ref: 'Profile' }],
   allergens: [{ type: mongoose.Types.ObjectId, ref: 'Allergen' }],
