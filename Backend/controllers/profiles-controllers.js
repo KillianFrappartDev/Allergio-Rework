@@ -17,7 +17,7 @@ const getProfileById = async (req, res, next) => {
 };
 
 const createProfile = async (req, res, next) => {
-  const { name, allergens, owner } = req.body;
+  const { name, allergens, owner, image } = req.body;
 
   let user;
   try {
@@ -33,7 +33,7 @@ const createProfile = async (req, res, next) => {
     return next(new Error('[POST][PROFILE] Could not find user with profiles.'));
   }
 
-  const newProfile = new Profile({ name, owner: user, readers: [], allergens });
+  const newProfile = new Profile({ name, owner: user, readers: [], allergens, image });
 
   try {
     await newProfile.save();
