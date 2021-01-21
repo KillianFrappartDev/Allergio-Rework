@@ -19,6 +19,7 @@ const EditScreen = ({ navigation }) => {
   const [user, setUser] = React.useState(authContext.user);
   const [getApi, setGetApi] = React.useState(false);
   const [image, setImage] = useState(null);
+  const [newImage, setNewImage] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -54,10 +55,16 @@ const EditScreen = ({ navigation }) => {
     let match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
 
-    console.log(await uploadHandler({ uri: localUri, name: filename, type }));
+    const newImage = await uploadHandler({ uri: localUri, name: filename, type });
+
+    try {
+      await axios.put(API_URL + 'users/image', { user, image: newImage });
+    } catch (error) {
+      console.log('IMAGE ERROR');
+    }
   };
 
-  const changeUser = data => {
+  const changeUser = async data => {
     const newUser = { ...user };
 
     Object.keys(data).map(input => {

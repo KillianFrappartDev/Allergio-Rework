@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 // Local imports
 const User = require('../models/user');
+const user = require('../models/user');
 
 const getUserById = async (req, res, next) => {
   const userId = req.params.uid;
@@ -125,6 +126,7 @@ const editUser = async (req, res, next) => {
   const userEdit = req.body.user;
   const id = req.body.user._id;
 
+  let user;
   try {
     user = await User.findOne({ _id: id });
   } catch (error) {
@@ -156,7 +158,38 @@ const editUser = async (req, res, next) => {
   });
 };
 
+const editImage = async (req, res, next) => {
+  const image = req.body.image;
+  const id = req.body.user._id;
+  console.log(id);
+
+  let user;
+  try {
+    user = await User.findById(id);
+  } catch (error) {
+    return next(new Error('[POST][USERS] Could not log user in.' + error));
+  }
+
+  if (!user) {
+    return next(new Error('[POST][USERS] Login failed (no corresponding id found).'));
+  }
+
+  user.image = image;
+
+  try {
+    user.save();
+  } catch (error) {
+    return next(new Error('[PUT][PROFILES] Could not update profile.'));
+  }
+
+  res.json({
+    message: '[PUT][user] User updated!',
+    user
+  });
+};
+
 exports.getUserById = getUserById;
 exports.signup = signup;
 exports.login = login;
 exports.editUser = editUser;
+exports.editImage = editImage;
