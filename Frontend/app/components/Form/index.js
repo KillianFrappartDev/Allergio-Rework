@@ -42,7 +42,6 @@ const Form = ({ formField, navigation, changeData, transparent, buttonTitle, sub
   };
 
   const handlePress = () => {
-    //console.log('ok')
     const fieldsState = { ...fields };
     submitCallback(fieldsState);
     noBack || navigation.goBack();
@@ -50,7 +49,6 @@ const Form = ({ formField, navigation, changeData, transparent, buttonTitle, sub
 
   const handleChangeInput = (value, key) => {
     const newState = { ...fields };
-    //console.log(newState)
     newState[key].value = value;
     setFields(newState);
   };
@@ -73,7 +71,7 @@ const Form = ({ formField, navigation, changeData, transparent, buttonTitle, sub
           <View key={key} style={styles.allergensContainer}>
             <Tag allergens={formField[key].value} />
             <TouchableOpacity style={styles.addAllergen} onPress={goAllergens}>
-              <Text style={{ color: 'white' }}>add</Text>
+              <Text style={{ color: 'white' }}>Add</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -22,7 +22,6 @@ const AddAllergens = ({ navigation }) => {
 
   const checkedValue = name => {
     const newChecked = [...checked];
-    //console.log(e)
     newChecked.includes(name) ? newChecked.splice(newChecked.indexOf(name), 1) : newChecked.push(name);
     setChecked(newChecked);
   };
@@ -39,7 +38,6 @@ const AddAllergens = ({ navigation }) => {
       });
       return val;
     });
-    //console.log('allergensSelect',allergensSelect)
     navigation.navigate('AddProfileScreen', { allergensSelect });
   };
 
@@ -49,12 +47,13 @@ const AddAllergens = ({ navigation }) => {
         <View style={styles.allergensContainer}>
           {allergens.map(allergen => (
             <View key={allergen._id} style={styles.allergen}>
-              <Image source={{ uri: allergen.image }} style={styles.image} />
+              <TouchableOpacity onPress={() => checkedValue(allergen.name)}>
+                <Image source={{ uri: allergen.image }} style={styles.image} />
+              </TouchableOpacity>
               <Text>{allergen.name}</Text>
               <RadioButton
                 value={allergen.name}
                 status={checked.includes(allergen.name) ? 'checked' : 'unchecked '}
-                onPress={() => checkedValue(allergen.name)}
                 disabled={false}
                 uncheckedColor="red"
                 color="blue"
@@ -63,7 +62,7 @@ const AddAllergens = ({ navigation }) => {
           ))}
           <View style={styles.allergen}>
             <TouchableOpacity style={styles.addAllergen} onPress={navigateTo}>
-              <Text style={{ color: 'white' }}>add</Text>
+              <Text style={{ color: 'white' }}>Add</Text>
             </TouchableOpacity>
           </View>
         </View>

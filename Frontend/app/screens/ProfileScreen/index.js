@@ -20,17 +20,9 @@ const ProfileScreen = props => {
   const [sharedProfiles, setSharedProfiles] = React.useState([]);
 
   React.useEffect(() => {
-    // console.log(authContext.user)
-    // setUser(authContext.user)
     setUser(authContext.user);
     getProfiles();
-    //getUser()
   }, [authContext.user]);
-  /*
-  React.useEffect(()=> {
-    getUser()
-  },[user])
-    */
 
   const getProfiles = async () => {
     let response;
@@ -45,8 +37,6 @@ const ProfileScreen = props => {
 
   const getUser = async () => {
     console.log('auth', authContext.user);
-    // const userFetch = await axios.get('http://localhost:5000/api/users/'+ authContext.user._id)
-    //console.log("user",userFetch.data.message)
     setUser(authContext.user);
   };
 
@@ -77,22 +67,22 @@ const ProfileScreen = props => {
             }}
             style={styles.image}
           />
-          <Text style={styles.text}>{user ? user.name : 'pas de user'}</Text>
+          <Text style={styles.text}>{user ? user.name : 'No user'}</Text>
           <View style={styles.edit}>
             <Text onPress={() => props.navigation.navigate('EditScreen')} style={styles.text}>
-              editer profile
+              Edit
             </Text>
           </View>
         </View>
         <SafeAreaView style={styles.safe}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>my Profiles</Text>
+            <Text style={styles.title}>My Profiles</Text>
           </View>
           <View style={styles.cards}>
-            {profiles.length ? <CardList profilesList={profiles} /> : <Text>no profiles</Text>}
+            {profiles.length ? <CardList profilesList={profiles} /> : <Text>No profiles</Text>}
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>shared profiles</Text>
+            <Text style={styles.title}>Shared profiles</Text>
           </View>
           <View style={styles.cards}>
             {sharedProfiles.length ? <CardList profilesList={sharedProfiles} /> : <Text>no profiles shared</Text>}

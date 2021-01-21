@@ -1,16 +1,21 @@
 import React from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 // Local imports
+import CustomButton from '../CustomButton/index';
 import styles from './styles';
 
 const Contact = props => {
   let shareButton;
   if (props.share) {
-    shareButton = <Button style={styles.button} title="Share" onPress={props.onShare.bind(null, props.id)} />;
+    shareButton = (
+      <CustomButton style={styles.button} title="Share" onPress={props.onShare.bind(null, props.id)} color="blue" />
+    );
   } else {
     if (!props.phone) {
-      shareButton = <Button style={styles.button} title="Unshare" onPress={props.onUnshare.bind(null, props.id)} />;
+      shareButton = (
+        <CustomButton style={styles.button} title="Unshare" onPress={props.onUnshare.bind(null, props.id)} />
+      );
     }
   }
 
@@ -20,7 +25,7 @@ const Contact = props => {
       <View>
         <Text style={styles.name}>{props.name}</Text>
         <View style={styles.buttons}>
-          <Button
+          <CustomButton
             style={styles.button}
             onPress={props.onInvite.bind(null, props.id, props.number)}
             title="Invite"
@@ -35,12 +40,17 @@ const Contact = props => {
         <Text style={styles.name}>{props.name}</Text>
         {props.isContact === false ? (
           <View style={styles.buttons}>
-            <Button style={styles.button} onPress={props.onAdd.bind(null, props.id)} title="Add" color="green" />
+            <CustomButton style={styles.button} onPress={props.onAdd.bind(null, props.id)} title="Add" color="green" />
           </View>
         ) : (
           <View style={styles.buttons}>
             {shareButton}
-            <Button onPress={props.onDelete.bind(null, props.id)} style={styles.button} title="Remove" color="red" />
+            <CustomButton
+              onPress={props.onDelete.bind(null, props.id)}
+              style={styles.button}
+              title="Remove"
+              color="red"
+            />
           </View>
         )}
       </View>

@@ -16,22 +16,12 @@ const AddProfileScreen = ({ navigation, route }) => {
   const [profile, setProfile] = React.useState({});
   const [allergens, setAllergens] = React.useState();
 
-  // const changeUser = data => {
-  //   const newUser = { ...user };
-
-  //   Object.keys(data).map(input => {
-  //     newUser[input] = data[input].value;
-  //   });
-  //   setUser(newUser);
-  // };
-  //console.log('params',route.params)
   const changeProfile = data => {
     const newProfile = {};
 
     Object.keys(data).map(input => {
       newProfile[input] = data[input].value;
     });
-    //console.log('new',newProfile)
     newProfile.allergens = allergens.map(al => al._id);
     setProfile(newProfile);
   };
@@ -51,7 +41,6 @@ const AddProfileScreen = ({ navigation, route }) => {
   }, [profile]);
 
   React.useEffect(() => {
-    //console.log(route.params.allergensSelect)
     route.params && route.params.allergensSelect ? setAllergens(route.params.allergensSelect) : setAllergens([]);
   }, [isFocused]);
 
@@ -61,7 +50,7 @@ const AddProfileScreen = ({ navigation, route }) => {
         formField={{
           name: {
             label: 'name',
-            type: 'text',
+            type: 'name',
             inputProps: {
               required: true
             },
