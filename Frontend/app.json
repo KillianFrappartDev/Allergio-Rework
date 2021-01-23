@@ -25,7 +25,7 @@
     },
     "android": {
       "package": "allergio.alpha",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": ["CAMERA", "READ_CONTACTS", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
     },
     "description": "Allergio helps parents share the list of food allergens their children are allergic to with others and scan food products for allergens."
