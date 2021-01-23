@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, TouchableOpacity, Image, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
@@ -41,12 +41,11 @@ const AddProfileScreen = ({ navigation, route }) => {
   };
 
   const postProfile = async () => {
-    console.log('HERE', newImage);
     const res = await axios.post(API_URL + 'profiles/', {
       name: profile.name,
       owner: user._id,
       allergens: profile.allergens,
-      image: newImage
+      image: image
     });
     const getUser = await axios.get(API_URL + 'users/' + user._id);
     authContext.setUserprofile(getUser.data.user);

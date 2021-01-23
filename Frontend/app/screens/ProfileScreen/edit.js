@@ -24,10 +24,12 @@ const EditScreen = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
-        }
+        try {
+          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+          }
+        } catch (e) {}
       }
     })();
   }, []);
@@ -84,8 +86,8 @@ const EditScreen = ({ navigation }) => {
       user
     });
 
-    const userData = resImage ? resImage.data.data : res.data.user;
-    authContext.setUserprofile(userData);
+    console.log(res.data.user);
+    authContext.setUserprofile(res.data.user);
   };
 
   React.useEffect(() => {

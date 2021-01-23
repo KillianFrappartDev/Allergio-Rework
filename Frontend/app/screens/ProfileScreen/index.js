@@ -87,7 +87,7 @@ const ProfileScreen = props => {
             <Text style={styles.title}>Shared profiles</Text>
           </View>
           <View style={styles.cards}>
-            {sharedProfiles.length ? <CardList profilesList={sharedProfiles} /> : <Text>no profiles shared</Text>}
+            {sharedProfiles.length ? <CardList profilesList={sharedProfiles} /> : <Text>No profiles shared</Text>}
           </View>
         </SafeAreaView>
       </ScrollView>
