@@ -12,7 +12,9 @@ const Card = ({ name, image, allergens }) => {
         <Image
           style={styles.image}
           source={{
-            uri: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+            uri:
+              image ||
+              'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
           }}
         />
         <Text style={styles.text}>{name}</Text>

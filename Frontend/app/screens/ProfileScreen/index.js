@@ -63,7 +63,9 @@ const ProfileScreen = props => {
           />
           <Image
             source={{
-              uri: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+              uri:
+                user.image ||
+                'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
             }}
             style={styles.image}
           />
@@ -85,7 +87,7 @@ const ProfileScreen = props => {
             <Text style={styles.title}>Shared profiles</Text>
           </View>
           <View style={styles.cards}>
-            {sharedProfiles.length ? <CardList profilesList={sharedProfiles} /> : <Text>no profiles shared</Text>}
+            {sharedProfiles.length ? <CardList profilesList={sharedProfiles} /> : <Text>No profiles shared</Text>}
           </View>
         </SafeAreaView>
       </ScrollView>
